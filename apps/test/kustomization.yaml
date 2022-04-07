@@ -10,8 +10,7 @@ generatorOptions:
   disableNameSuffixHash: true
 
 resources:
-  - secret.yaml
-  - configmap.yaml
-  - deployment.yaml
-  - service.yaml
+  - ../base
+patchesStrategicMerge:
+#  - deployment.yaml
   - ingress.yaml

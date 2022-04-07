@@ -4,7 +4,7 @@ metadata:
   name: ingress
 spec:
   rules:
-  - host: django-test.com
+  - host: django-app.com
     http:
       paths: 
       - path: /

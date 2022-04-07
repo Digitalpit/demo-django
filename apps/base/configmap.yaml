@@ -4,4 +4,4 @@ data:
   debug_mode: "True"
 kind: ConfigMap
 metadata:
-  name: django-config
+  name: configmap
