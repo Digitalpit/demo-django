@@ -24,9 +24,15 @@ Simple application manifest is in install/install-app.yaml file
 
 ## Installation 
 
-Initial requirements: clone 
+Initial requirements: 
+  - clone repo https://github.com/Digitalpit/demo-django.git
+  - use existing imgages from https://hub.docker.com/r/pdziedziel/images/tags or create new ones and then change 'image' parameter in the deployment manifest.
 
 **Simple installation**  
 Simple installation can be done on Minikube:  
-  1. Start Minikube cluster - minikube start
-  2. 
+  1. Start Minikube cluster - `minikube start`
+  2. Enable ingress addon - `minikube addons enable ingress`
+  3. Confirm that current context is set to minikube cluster - `kubectl config get-contexts`
+  4. Go to 'install' folder and use kubectl tool to apply manifest to your cluster - `kubectl apply -f install-app.yaml`
+  5. Check IP of the ingress and add to your local hosts file mapping ingress IP -> host parameter (django-dev.com)
+
