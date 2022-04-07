@@ -38,7 +38,7 @@ Simple installation can be done on Minikube:
   6. Access application by http://django-dev.com/polls/ or http://django-dev.com/admin
   7. Create admin application user by loggin to terminal of the pod and run following command in /app folder - `python manage.py createsuperuser`
 
-**Flux installation**
+**Flux installation**  
 Initial requirements: 
   - github account with access token generated
   - flux command line tool istalled
