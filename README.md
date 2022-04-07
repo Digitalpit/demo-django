@@ -51,3 +51,6 @@ Aplication deployment can be also done using FluxCD tool:
   5. Clone new created repo
   6. Copy 'apps' and 'infra-common' folders from https://github.com/Digitalpit/demo-django.git repo to your new repo
   7. Take from demo-django\clusters\test folder 3 files ('dev.yaml', 'test.yaml', 'infra-common.yaml') and copy to your new repo to clusters/django folder
+  8. Commit all files and check when resourses will be deployed to your cluster
+
+
