@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  allowed_hosts_list: '[*]'
+  debug_mode: "True"
+kind: ConfigMap
+metadata:
+  name: django-config
