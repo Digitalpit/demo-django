@@ -53,4 +53,21 @@ Aplication deployment can be also done using FluxCD tool:
   7. Take from demo-django\clusters\test folder 3 files ('dev.yaml', 'test.yaml', 'infra-common.yaml') and copy to your new repo to clusters/django folder
   8. Commit all files and check when resourses will be deployed to your cluster
 
+## 12-factor app model
+
+  - I. Codebase - application and images stored in one central repo
+  - III. Config - some parameters from config moved from settings.py to configmap and secret
+  - V. Build, release, run - there are separate stages building image, configuration and deployment to cluster
+  - VII. Port binding - we have pod (with application) as one service, cluster IP i second and ingress is the first one and one service becomes the backing service for another
+  - IX. Disposability - application as container starts and stops in seconds
+  - X. Dev/prod parity - in containers we have it as manifests are also very similar 
+
+## Local development
+
+Kind would be good solution to help developers to deploy application to local cluster. 
+Process can look like below:  
+  - developer develops application locally 
+  - once he makes commit locally, create image locally
+  - kind has the ability to load local images directly into the cluster so developer can deploy new image in local kind cluster without pushing it to repo
+  - after application deployed succesfully locally developer can run some basic tests
 
