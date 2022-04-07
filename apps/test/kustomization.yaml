@@ -7,7 +7,7 @@ commonLabels:
   app: test-django
 
 generatorOptions:
-  disableNameSuffixHash: true
+  disableNameSuffixHash: false
 
 resources:
   - ../base
