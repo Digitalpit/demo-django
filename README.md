@@ -38,3 +38,16 @@ Simple installation can be done on Minikube:
   6. Access application by http://django-dev.com/polls/ or http://django-dev.com/admin
   7. Create admin application user by loggin to terminal of the pod and run following command in /app folder - `python manage.py createsuperuser`
 
+**Flux installation**
+Initial requirements: 
+  - github account with access token generated
+  - flux command line tool istalled
+  
+Aplication deployment can be also done using FluxCD tool:  
+  1. Start Minikube cluster - `minikube start`
+  2. Enable ingress addon - `minikube addons enable ingress`
+  3. Confirm that current context is set to minikube cluster - `kubectl config get-contexts`
+  4. Bootstrap the toolkit components on the targeted Git provider and minikube cluster - `flux bootstrap github --owner=<username> --repository=<new_repo_name> --branch=main --personal --path=clusters/django`
+  5. Clone new created repo
+  6. Copy 'apps' and 'infra-common' folders from https://github.com/Digitalpit/demo-django.git repo to your new repo
+  7. Take from demo-django\clusters\test folder 3 files ('dev.yaml', 'test.yaml', 'infra-common.yaml') and copy to your new repo to clusters/django folder
