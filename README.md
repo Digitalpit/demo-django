@@ -16,3 +16,17 @@ To create image clone repo, go to source_code folder and run 'docker build' and 
 
 Ready to use images available at: https://hub.docker.com/r/pdziedziel/images/tags
 
+## Application manifest
+
+Simple application manifest is in install/install-app.yaml file
+
+'apps' and 'infra-common' folders contain manifests that can be used do deploy application using FluxCD tool https://fluxcd.io/.
+
+## Installation 
+
+Initial requirements: clone 
+
+**Simple installation**  
+Simple installation can be done on Minikube:  
+  1. Start Minikube cluster - minikube start
+  2. 
