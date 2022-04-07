@@ -35,4 +35,6 @@ Simple installation can be done on Minikube:
   3. Confirm that current context is set to minikube cluster - `kubectl config get-contexts`
   4. Go to 'install' folder and use kubectl tool to apply manifest to your cluster - `kubectl apply -f install-app.yaml`
   5. Check IP of the ingress and add to your local hosts file mapping ingress IP -> host parameter (django-dev.com)
+  6. Access application by http://django-dev.com/polls/ or http://django-dev.com/admin
+  7. Create admin application user by loggin to terminal of the pod and run following command in /app folder - `python manage.py createsuperuser`
 
