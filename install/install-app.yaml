@@ -4,40 +4,52 @@ data:
   debug_mode: "True"
 kind: ConfigMap
 metadata:
-  name: django-config
+  labels:
+    app: dev-django
+  name: dev-configmap
+  namespace: django-dev
 ---
 apiVersion: v1
 data:
   secret-key: ZDkzJDQmXngmNDQzYmY2eXUlIV9ndXJec2slNDhhYyEmXiEjI3ZoIWRxaSp1KGQoZXA=
 kind: Secret
 metadata:
-  name: django-secret
+  labels:
+    app: dev-django
+  name: dev-secret
+  namespace: django-dev
 type: Opaque
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: django-service
+  labels:
+    app: dev-django
+  name: dev-service
+  namespace: django-dev
 spec:
   ports:
   - name: http
     port: 8000
   selector:
-    app: django-app
+    app: dev-django
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django-deployment
+  labels:
+    app: dev-django
+  name: dev-deployment
+  namespace: django-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: django-app
+      app: dev-django
   template:
     metadata:
       labels:
-        app: django-app
+        app: dev-django
     spec:
       containers:
       - env:
@@ -45,17 +57,17 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: allowed_hosts_list
-              name: django-config
+              name: dev-configmap
         - name: DEBUG_MODE
           valueFrom:
             configMapKeyRef:
               key: debug_mode
-              name: django-config
+              name: dev-configmap
         - name: SECRET_KEY_VALUE
           valueFrom:
             secretKeyRef:
               key: secret-key
-              name: django-secret
+              name: dev-secret
         image: pdziedziel/images:django1.4
         name: django
         ports:
@@ -64,15 +76,18 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: django-ingress
+  labels:
+    app: dev-django
+  name: dev-ingress
+  namespace: django-dev
 spec:
   rules:
-  - host: django-app.com
+  - host: django-dev.com
     http:
       paths:
       - backend:
           service:
-            name: django-service
+            name: dev-service
             port:
               number: 8000
         path: /
