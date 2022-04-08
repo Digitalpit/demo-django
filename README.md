@@ -26,7 +26,7 @@ Simple application manifest is in install/install-app.yaml file
 
 Initial requirements: 
   - clone repo https://github.com/Digitalpit/demo-django.git
-  - use existing imgages from https://hub.docker.com/r/pdziedziel/images/tags or create new ones and then change 'image' parameter in the deployment manifest.
+  - use existing images from https://hub.docker.com/r/pdziedziel/images/tags or create new ones and then change 'image' parameter in the deployment manifest.
 
 **Simple installation**  
 Simple installation can be done on Minikube:  
@@ -41,9 +41,9 @@ Simple installation can be done on Minikube:
 **Flux installation**  
 Initial requirements: 
   - github account with access token generated
-  - flux command line tool istalled
+  - flux command line tool installed
   
-Aplication deployment can be also done using FluxCD tool:  
+Application deployment can be also done using FluxCD tool:  
   1. Start Minikube cluster - `minikube start`
   2. Enable ingress addon - `minikube addons enable ingress`
   3. Confirm that current context is set to minikube cluster - `kubectl config get-contexts`
@@ -51,7 +51,7 @@ Aplication deployment can be also done using FluxCD tool:
   5. Clone new created repo
   6. Copy 'apps' and 'infra-common' folders from https://github.com/Digitalpit/demo-django.git repo to your new repo
   7. Take from demo-django\clusters\test folder 3 files ('dev.yaml', 'test.yaml', 'infra-common.yaml') and copy to your new repo to clusters/django folder
-  8. Commit all files and check when resourses will be deployed to your cluster
+  8. Commit all files and check when resources will be deployed to your cluster
 
 ## 12-factor app model
 
@@ -69,5 +69,15 @@ Process can look like below:
   - developer develops application locally 
   - once he makes commit locally, create image locally
   - kind has the ability to load local images directly into the cluster so developer can deploy new image in local kind cluster without pushing it to repo
-  - after application deployed succesfully locally developer can run some basic tests
+  - after application deployed successfully locally developer can run some basic tests
 
+## Deploy in AWS  
+
+General description:
+  - After code is merged in repo, Jenkins pipeline runs and builds image with new code and puts it in AWS ECR repo.
+  - Next pipeline downloads manifest and image and deploys it to EKS.
+
+I think that should be several pipelines for that:
+  - CI to deploy it to CI env after each merge (with tag latest) and runs some basic tests
+  - CI_QA that deploys it during the night and runs all test - triggered by timer
+  - Build which will build image with relevant tag which can be delivered to prod/client - triggered manually on demand
