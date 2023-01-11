@@ -27,4 +27,4 @@ jobs:
         pip install -r install/source_code/requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        python install/source_code/manage.py test
